@@ -1,9 +1,13 @@
-import classes from "./ProfileForm.module.css";
 import { AuthContext } from "../../store/auth-context";
+import { useHistory } from "react-router";
+
+import classes from "./ProfileForm.module.css";
 import { useContext, useRef } from "react";
 
 const ProfileForm = () => {
   const authCtx = useContext(AuthContext);
+
+  const history = useHistory();
 
   const passwordInputRef = useRef();
 
@@ -36,6 +40,7 @@ const ProfileForm = () => {
 
     try {
       sendRequest();
+      history.replace("/");
     } catch (error) {
       console.log(error.error.message);
     }
